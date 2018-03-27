@@ -1,0 +1,39 @@
+buildscript {
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter/' }
+        jcenter()
+    }
+}
+//apply plugin: 'org.jenkins-ci.jpi:0.16.0'
+plugins {
+    id "org.jenkins-ci.jpi" version "0.16.0"
+}
+group 'com.huangmb.jenkins'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+//    maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter/' }
+    jcenter()
+}
+jenkinsPlugin {
+    coreVersion = "1.625.3"//'1.625.3'   2.60.3                                            // Version of Jenkins core this plugin depends on.
+    displayName = "UpYun Upload Plugin"                // Human-readable name of plugin.
+    url = "http://wiki.jenkins-ci.org/display/JENKINS/SomePluginPage"   // URL for plugin on Jenkins wiki or elsewhere.
+    gitHubUrl = "https://github.com/jenkinsci/upyun-plugin"              // Plugin URL on GitHub. Optional.
+    shortName = "upyun"                                           // Plugin ID, defaults to the project name without trailing '-plugin'
+
+    // The developers section is optional, and corresponds to the POM developers section.
+    developers {
+        developer {
+            id "bob"
+            name "bob.huang"
+            email "bob.huang@fanruan"
+        }
+    }
+}
+dependencies {
+    compile 'com.upyun:java-sdk:3.20'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
